@@ -1,16 +1,16 @@
 .form-field {
-  $input-height: 2rem;
+  $input-height: 2 * $base-unit;
 
   position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 1rem;
-  margin-bottom: 0.5rem;
+  padding-top: $base-unit;
+  margin-bottom: 0.5 * $base-unit;
 
   > .input {
     flex: 1;
-    padding: 0 0.5rem;
+    padding: 0 0.5 * $base-unit;
     height: $input-height;
     min-width: 0;
     margin: 0;
@@ -46,13 +46,13 @@
 
   > .label {
     position: absolute;
-    top: 1rem;
+    top: 1 * $base-unit;
     left: 0;
     display: flex;
     align-items: center;
     width: 100%;
     height: $input-height;
-    padding: 0 0.5rem;
+    padding: 0 0.5 * $base-unit;
     background-color: rgba($edem-color-accent, 0.3);
     color: rgba(#fff, 0.6);
     font-size: $font-size-base;
@@ -74,7 +74,7 @@
     }
 
     > .labeltext {
-      line-height: 1rem;
+      line-height: 1 * $base-unit;
 
       @at-root .-filled#{&} {
         animation: slideOut 0.3s forwards;
@@ -84,7 +84,7 @@
 
   > .action {
     flex: 0 1 auto;
-    padding-right: 0.5rem;
+    padding-right: 0.5 * $base-unit;
     color: $edem-color-link;
     font-size: $font-size-mili;
     font-weight: 600;
@@ -98,26 +98,26 @@
     color: $edem-color-negative;
     font-size: $font-size-centi;
     font-weight: 400;
-    margin-top: 0.25rem;
+    margin-top: 0.25 * $base-unit;
   }
 }
 
 @keyframes slideOut {
   35% {
     opacity: 0;
-    transform: translate3d(1rem, 0, 0);
+    transform: translate3d(1 * $base-unit, 0, 0);
     font-size: $font-size-base;
     letter-spacing: initial;
   }
   50% {
     opacity: 0;
-    transform: translate3d(-1rem, -1.5rem, 0);
+    transform: translate3d(-1 * $base-unit, -1.5 * $base-unit, 0);
     font-size: $font-size-mili;
     letter-spacing: 0.05em;
   }
   100% {
     opacity: 1;
-    transform: translate3d(-0.5rem, -1.5rem, 0);
+    transform: translate3d(-0.5 * $base-unit, -1.5 * $base-unit, 0);
     text-transform: uppercase;
     font-weight: 700;
     font-size: $font-size-mili;

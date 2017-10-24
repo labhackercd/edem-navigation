@@ -3,19 +3,19 @@
   background-color: $edem-color-accent;
   color: #fff;
   margin: 0 auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1 * $base-unit;
 
   &.-negative {
     background-color: $edem-color-negative;
   }
 
   &.-social {
-    padding-left: 3.5rem;
-    padding-right: 1rem;
+    padding-left: 3.5 * $base-unit;
+    padding-right: 1 * $base-unit;
 
     @include bp-smallonly {
-      padding-left: 3rem;
-      padding-right: 0.5rem;
+      padding-left: 3 * $base-unit;
+      padding-right: 0.5 * $base-unit;
     }
 
     &::before {
@@ -23,9 +23,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 2.5rem;
+      width: 2.5 * $base-unit;
       height: 100%;
-      background-size: 1.25rem;
+      background-size: 1.25 * $base-unit;
       background-repeat: no-repeat;
       background-position: center center;
     }

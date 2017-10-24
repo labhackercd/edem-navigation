@@ -15,7 +15,7 @@
     flex-direction: column;
     width: $edem-sidebar-width;
     height: calc(100vh - #{$edem-topbar-height});
-    padding: 2rem $edem-sidebar-padding;
+    padding: calc(2 * #{$base-unit}) $edem-sidebar-padding;
     background-color: $edem-color-primary;
     overflow: auto;
     z-index: 100000;
@@ -24,8 +24,8 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 2rem;
-      height: 2rem;
+      width: 2 * $base-unit;
+      height: 2 * $base-unit;
 
       > .edem-close-button {
         position: fixed;
@@ -44,10 +44,10 @@
 
     > .avatar{
       align-self: center;
-      width: 4rem;
-      height: 4rem;
+      width: 4 * $base-unit;
+      height: 4 * $base-unit;
       border-radius: 50%;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.5 * $base-unit;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -59,19 +59,19 @@
     > .username {
       align-self: center;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1 * $base-unit;
       font-weight: 500;
       font-size: 1.25em;
-      line-height: 1rem;
+      line-height: 1 * $base-unit;
     }
 
     > .header {
       color: #fff;
       font-weight: 700;
       font-size: $font-size-kilo;
-      line-height: 3rem;
+      line-height: 3 * $base-unit;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2 * $base-unit;
       border-bottom: 4px solid $edem-color-accent;
     }
 
@@ -79,7 +79,7 @@
       color: white;
       font-size: 0.75em;
       font-weight: 400;
-      margin-bottom: 2rem;
+      margin-bottom: 2 * $base-unit;
       text-align: center;
     }
 
@@ -97,18 +97,18 @@
       color: $edem-color-secondary;
     }
 
-    > .social { margin-bottom: 1rem }
+    > .social { margin-bottom: 1 * $base-unit }
 
     > .access {
       display: flex;
       flex-direction: column;
 
       > .g-recaptcha {
-        margin-top: 1rem;
+        margin-top: 1 * $base-unit;
       }
 
       > .edem-button {
-        margin-top: 1rem;
+        margin-top: 1 * $base-unit;
       }
 
       > .errorbox {
@@ -117,10 +117,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 5rem;
+        min-height: 5 * $base-unit;
         width: $edem-sidebar-width;
         margin-left: calc(#{$edem-sidebar-padding} * -1);
-        padding: 1rem;
+        padding: 1 * $base-unit;
         background-color: $edem-color-negative;
         color: #fff;
         font-weight: 500;
@@ -132,7 +132,7 @@
       > .errorbox > .edem-close-button {
         position: absolute;
         top: 0;
-        right: 1rem;
+        right: 1 * $base-unit;
       }
     }
 
