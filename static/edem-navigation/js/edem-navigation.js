@@ -55,7 +55,9 @@ function showSuccessSignupMessage() {
 
 // Resize reCAPTCHA on window resize
 $(window).resize(function(){
-  resizeRecaptcha();
+  if ($('body').hasClass('-sidebaropen')) {
+    resizeRecaptcha();
+  }
 });
 
 // eDemocracia open sidebar and its contents
