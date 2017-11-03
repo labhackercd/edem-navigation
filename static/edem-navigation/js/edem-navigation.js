@@ -194,3 +194,11 @@ $('.JS-signUpForm').submit(function(event) {
     });
   }
 });
+
+// XXX This should be exclusively on Audiencias Plugin whenever is possible
+if (location.href.match(/audiencias/)) {
+  $(document).on('click', 'a[href^="/home/?next="]', function(e){
+    e.preventDefault();
+    openEdemSidebar('signin');
+  });
+}
