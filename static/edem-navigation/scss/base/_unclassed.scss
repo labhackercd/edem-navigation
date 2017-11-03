@@ -3,18 +3,6 @@ body {
   position: relative;
   width: 100%;
   transition: margin-left 0.3s $swift-out;
-
-  &::after {
-    content: '';
-    position: fixed;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    top: 0;
-    background-color: $edem-color-primary;
-    z-index: 100000;
-    transition: opacity 0.3s ease, width 0s 0.3s, height 0s 0.3s;
-  }
 }
 
 // TODO Remove this after getting rid of Foundation!!

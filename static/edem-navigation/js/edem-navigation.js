@@ -60,7 +60,9 @@ $(window).resize(function(){
   }
 });
 
-// eDemocracia open sidebar and its contents
+// Create and append to body an overlay div for when the sidebar is opened
+$('<div/>', {class: 'edem-overlay'}).appendTo('body');
+
 // Open sidebar via the topbar
 $('.JS-openSidebar').click(function() {
   if ($(this).hasClass('-active')) {
@@ -75,15 +77,9 @@ $('.JS-closeSidebar').click(function(){
   closeEdemSidebar();
 });
 
-// Close sidebar if click is outside of sidebar or topbar
-document.addEventListener('click', function(e) {
-  var onEdemCore = $(e.target).closest('.edem-topbar, .edem-sidebar').length;
-  var sidebarOpen = $('body').hasClass('-sidebaropen');
-
-  if (!onEdemCore && sidebarOpen ) {
-    $('.JS-openSidebar').removeClass('-active');
-    $('body').removeClass('-sidebaropen');
-  }
+// Close sidebar if click on the overlay
+$('.edem-overlay').click(function(){
+  closeEdemSidebar();
 });
 
 // Detect when input is filled
