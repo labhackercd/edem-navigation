@@ -1,3 +1,20 @@
+function closeEdemSidebar() {
+  $('.JS-openSidebar').removeClass('-active');
+  $('body').removeClass('-sidebaropen');
+}
+
+function openEdemSidebar(option) {
+  var contentSelector = '.JS-' + option + 'Content';
+  var linkSelector = '.JS-openSidebar[data-sidebar-content="' + option + '"]';
+
+  $('body').addClass('-sidebaropen');
+  $('.JS-sidebarContent').removeClass('-show');
+  $('.JS-openSidebar').removeClass('-active');
+  $(linkSelector).addClass('-active');
+  $(contentSelector).addClass('-show');
+  resizeRecaptcha();
+}
+
 function resizeRecaptcha() {
   if (!$('.JS-signupContent').hasClass('JS-signupFinished')){ // Only run if signup is not completed
     var accessWidth = $('.JS-signUpForm')[0].getBoundingClientRect().width; // Get value with decimals
@@ -42,34 +59,18 @@ $(window).resize(function(){
 });
 
 // eDemocracia open sidebar and its contents
+// Open sidebar via the topbar
 $('.JS-openSidebar').click(function() {
   if ($(this).hasClass('-active')) {
-    $(this).removeClass('-active');
-    $('body').removeClass('-sidebaropen');
-
+    closeEdemSidebar();
   } else {
-    $('body').addClass('-sidebaropen')
-    $('.JS-sidebarContent').removeClass('-show');
-    $('.JS-openSidebar').removeClass('-active');
-    $(this).addClass('-active');
-
-    if ($(this).hasClass('JS-showSignin')) {
-      $('.JS-signinContent').addClass('-show');
-
-    } else if ($(this).hasClass('JS-showSignup')) {
-      $('.JS-signupContent').addClass('-show');
-      resizeRecaptcha();
-
-    } else if ($(this).hasClass('JS-showProfile')) {
-      $('.JS-profileContent').addClass('-show');
-    }
+    openEdemSidebar($(this).data('sidebarContent'));
   }
 });
 
 // eDemocracia sidebar close button
 $('.JS-closeSidebar').click(function(){
-  $('.JS-openSidebar').removeClass('-active');
-  $('body').removeClass('-sidebaropen');
+  closeEdemSidebar();
 });
 
 // Close sidebar if click is outside of sidebar or topbar
