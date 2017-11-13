@@ -82,6 +82,17 @@ $('.edem-overlay').click(function(){
   closeEdemSidebar();
 });
 
+// Toggle topbar items when on mobile
+$('.JS-toggleTopbarMenu').click(function(){
+  if ($(this).hasClass('-active')){
+    $(this).removeClass('-active');
+    $('.JS-topbarMenuHandler').removeClass('-menuopen');
+  } else {
+    $(this).addClass('-active');
+    $('.JS-topbarMenuHandler').addClass('-menuopen');
+  }
+});
+
 // Detect when input is filled
 $('.JS-formInput').focus(function() {
   $(this).closest('.form-field').addClass('-filled');

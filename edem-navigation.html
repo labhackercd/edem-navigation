@@ -9,22 +9,27 @@
 {% macro tos_url %}{% block edem_tos_url %}{% endblock %}{% endmacro %}
 {% macro avatar %}{% block edem_avatar %}{% endblock %}{% endmacro %}
 {% macro username %}{% block edem_username %}{% endblock %}{% endmacro %}
+{% macro owner_name %}{% block edem_owner_name %}{% endblock %}{% endmacro %}
 {% macro recaptcha %}{% block edem_recaptcha %}{% endblock %}{% endmacro %}
 
 <div class="edem-topbar">
   <div class="stick">
-    <a class="brand" href="{% use_macro root_url %}">
-      <img class="logo" src="{% static 'edem-navigation/img/edem-logo-text.svg' %}" alt="e-Democracia Beta">
+    <a class="brand JS-topbarMenuHandler" href="{% use_macro root_url %}">
+      <img class="logo" src="{% static 'edem-navigation/img/edem-logo-icon.png' %}" alt="e-Democracia Beta">
+      <span class="name">{% use_macro owner_name %}</span>
     </a>
 
     <nav class="actions">
-      {# <a class="link">Fale conosco</a> #}
-      {% if user.is_authenticated %}
-        <a class="link JS-openSidebar" data-sidebar-content="profile">Menu</a>
-      {% else %}
-        <a class="link JS-openSidebar" data-sidebar-content="signin">Entrar</a>
-        <a class="link -highlight JS-openSidebar" data-sidebar-content="signup">Cadastrar</a>
-      {% endif %}
+      <div class="menu JS-topbarMenuHandler">
+        {# <a class="link">Fale conosco</a> #}
+        {% if user.is_authenticated %}
+          <a class="link JS-openSidebar" data-sidebar-content="profile">Menu</a>
+        {% else %}
+          <a class="link JS-openSidebar" data-sidebar-content="signin">Entrar</a>
+          <a class="link -highlight JS-openSidebar" data-sidebar-content="signup">Cadastrar</a>
+        {% endif %}
+      </div>
+      <button class="hamburger-button JS-toggleTopbarMenu JS-closeSidebar"></button>
     </nav>
   </div>
 </div>

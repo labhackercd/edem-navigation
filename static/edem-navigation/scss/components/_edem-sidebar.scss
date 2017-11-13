@@ -33,6 +33,10 @@
 
       > .edem-close-button {
         position: fixed;
+
+        @include bp-smallonly {
+          display: none;
+        }
       }
     }
   }
