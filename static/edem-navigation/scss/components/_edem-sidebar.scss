@@ -3,7 +3,7 @@
   font-size: $base-unit;
   position: absolute;
   width: $edem-sidebar-width;
-  left: 100%;
+  right: calc(#{$edem-sidebar-width} * -1);
   top: $edem-topbar-height;
   box-sizing: border-box;
 
@@ -153,9 +153,4 @@
       text-decoration: none;
     }
   }
-}
-
-body.-sidebaropen {
-  margin-left: calc(#{$edem-sidebar-width} * -1); // Calc to give the variable in negative value
-  overflow: hidden;
 }
