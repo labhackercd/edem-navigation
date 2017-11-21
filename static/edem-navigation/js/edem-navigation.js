@@ -61,7 +61,7 @@ $(window).resize(function(){
 });
 
 // Create and append to body an overlay div for when the sidebar is opened
-$('<div/>', {class: 'edem-overlay'}).appendTo('body');
+$('<div/>', {class: 'edem-overlay'}).appendTo('.edem-content-wrapper');
 
 // Open sidebar via the topbar
 $('.JS-openSidebar').click(function() {
