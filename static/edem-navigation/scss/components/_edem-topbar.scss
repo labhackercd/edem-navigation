@@ -42,6 +42,7 @@
 
       > .name {
         color: #fff;
+        line-height: 0.8 * $base-unit;
         font-size: 0.8 * $base-unit;
         font-weight: 600;
         margin-left: 0.5 * $base-unit;
@@ -49,6 +50,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         @include bp-smallup {
+          line-height: 1 * $base-unit;
           font-size: 1 * $base-unit;
         }
       }
