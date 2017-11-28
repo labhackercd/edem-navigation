@@ -1,12 +1,69 @@
+$color-edem-blue: #3399CC;
+
+$color-edem-red: #FF6655;
+
+$color-edem-green: #339966;
+$color-edem-green-dark: #228855;
+$color-edem-green-xdark: #336655;
+$color-edem-green-xxdark: #225544;
+$color-edem-green-xxxdark: #114433;
+
+$color-edem-yellow: #EECC33;
+
+$color-edem-orange: #EE9933;
+
+
 .edem-button {
+  $color-bg: $edem-color-accent;
+  $color-fg: #fff;
+
   @extend %button;
-  background-color: $edem-color-accent;
-  color: #fff;
+  background-color: transparent;
+  color: $color-fg;
   margin: 0 auto;
   margin-bottom: 1 * $base-unit;
+  overflow: hidden;
+  transition: color 0.3s 0.2s $swift-out;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+  }
+
+  &::before {
+    background-color: $color-bg;
+    z-index: -1;
+    transition: height 0.3s 0s $swift-out;
+  }
+
+  &::after {
+    content: '';
+    opacity: 0;
+    transition: all 0.5s $swift-out;
+    background-image: linear-gradient(to right, transparent 0%, transparent 40%, $color-edem-red 40%, $color-edem-red 60%, transparent 60%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, transparent 30%, $color-edem-blue 30%, $color-edem-blue 50%, transparent 50%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, transparent 20%, $color-edem-green 20%, $color-edem-green 40%, transparent 40%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, transparent 10%, $color-edem-yellow 10%, $color-edem-yellow 30%, transparent 30%, transparent 100%);
+    background-size: 0% 100%,
+                     0% 100%,
+                     0% 100%,
+                     0% 100%;
+    background-repeat: no-repeat;
+    background-position: -10px;
+    transition: all 0.3s 0s $swift-out;
+    animation: loading 1.2s 0.5s linear infinite;
+  }
 
   &.-negative {
-    background-color: $edem-color-negative;
+    &::before {
+      background-color: $edem-color-negative;
+    }
   }
 
   &.-social {
@@ -33,13 +90,85 @@
     &.-facebook {
       background-color: $edem-color-facebook;
       color: #fff;
-      &::before { background-image: url('../img/social-icon-facebook.svg') }
+      &::before {
+        background-image: url('../img/social-icon-facebook.svg');
+        background-color: transparent;
+        z-index: 1;
+      }
     }
 
     &.-google {
       background-color: $edem-color-google;
       color: hsl(0, 0, 50%);
-      &::before { background-image: url('../img/social-icon-google.svg') }
+      &::before {
+        background-image: url('../img/social-icon-google.svg');
+        background-color: transparent;
+        z-index: 1;
+      }
     }
+  }
+
+  &.-loading {
+    color: transparent;
+    cursor: default;
+    // pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0),
+                0 0 0 0 rgba(0, 0, 0, 0) inset;
+    transition: color 0.3s 0s $swift-out;
+
+    &::before {
+      height: 0.5rem;
+      transition: height 0.3s 0.2s $swift-out;
+    }
+    &::after {
+      height: 0.5rem;
+      opacity: 1;
+      transition: all 0.3s 0.2s $swift-out;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-size: 0% 100%,
+                     150% 100%,
+                     0% 100%,
+                     800% 100%;
+  }
+  25% {
+    background-size: 100% 100%,
+                     300% 100%,
+                     0% 100%,
+                     1000% 100%;
+  }
+  25.001% {
+    background-size: 100% 100%,
+                     300% 100%,
+                     0% 100%,
+                     0% 100%;
+  }
+  50% {
+    background-size: 200% 100%,
+                     400% 100%,
+                     120% 100%,
+                     300% 100%;
+  }
+  50.001% {
+    background-size: 200% 100%,
+                     0% 100%,
+                     120% 100%,
+                     300% 100%;
+  }
+  75% {
+    background-size: 300% 100%,
+                     0% 100%,
+                     260% 100%,
+                     600% 100%;
+  }
+  100% {
+    background-size: 300% 100%,
+                     150% 100%,
+                     550% 100%,
+                     800% 100%;
   }
 }
