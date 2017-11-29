@@ -79,7 +79,7 @@
     transition: color 0.3s 0s $swift-out;
 
     &::before {
-      height: 0.5rem;
+      height: 0.5 * $base-unit;
       background-color: $edem-color-blue;
       background-repeat: no-repeat;
       background-position: 50% 0%;
