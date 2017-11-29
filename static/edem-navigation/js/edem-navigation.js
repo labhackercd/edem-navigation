@@ -148,39 +148,65 @@ $('.JS-closeAccessError').click(function(){
 // Ajax calls for login and signup
 $('.JS-loginForm').submit(function(event) {
   event.preventDefault();
-  $.ajax({
-    type:"POST",
-    url: '/ajax/login/',
-    data: $(event.target).serialize(),
-    success: function(response){
-      location.reload();
-    },
-    error: function(jqXRH){
-      if (jqXRH.status == 0) {
-        showError("Verifique sua conexão com a internet.")
-      } else if (jqXRH.status == 401) {
-        $('.JS-inputError').text('');
-        $(event.target)
-          .find('.JS-inputError')
-          .text(jqXRH.responseJSON['data'])
-          .removeAttr('hidden');
-      } else {
-        showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
+  var loginForm = $(this);
+  var submitButton = $('.JS-loginForm .JS-sendForm');
+
+  if (loginForm.hasClass('JS-submitting')) {
+    return false;
+  } else {
+    $.ajax({
+      type:"POST",
+      url: '/ajax/login/',
+      data: $(event.target).serialize(),
+      beforeSend: function() {
+        loginForm.addClass('JS-submitting');
+        submitButton.addClass('-loading');
+      },
+      success: function(response){
+        location.reload();
+      },
+      error: function(jqXRH){
+        if (jqXRH.status == 0) {
+          showError("Verifique sua conexão com a internet.")
+        } else if (jqXRH.status == 401) {
+          $('.JS-inputError').text('');
+          $(event.target)
+            .find('.JS-inputError')
+            .text(jqXRH.responseJSON['data'])
+            .removeAttr('hidden');
+        } else {
+          showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
+        }
+      },
+      complete: function() {
+        loginForm.removeClass('JS-submitting');
+        submitButton.removeClass('-loading');
       }
-    }
-  });
+    });
+  }
+
 });
 
 $('.JS-signUpForm').submit(function(event) {
   event.preventDefault();
-  if (grecaptcha.getResponse() == ""){
+  var signUpForm = $(this);
+  var submitButton = $('.JS-signUpForm .JS-sendForm');
+
+  if (grecaptcha.getResponse() == "") {
     showError("Por favor preencha o reCAPTCHA.");
+
+  } else if (signUpForm.hasClass('JS-submitting')) {
+    return false;
+
   } else {
     $.ajax({
       type:"POST",
       url: '/ajax/signup/',
       data: $(event.target).serialize(),
-
+      beforeSend: function() {
+        signUpForm.addClass('JS-submitting');
+        submitButton.addClass('-loading');
+      },
       success: function(response){
         showSuccessSignupMessage();
       },
@@ -207,6 +233,10 @@ $('.JS-signUpForm').submit(function(event) {
         } else {
           showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
         }
+      },
+      complete: function() {
+        signUpForm.removeClass('JS-submitting');
+        submitButton.removeClass('-loading');
       }
     });
   }

@@ -11,7 +11,6 @@
   font-weight: 500;
   text-align: center;
   line-height: 0.9 * $base-unit;
-  border-radius: 2px;
   appearance: none;
   text-decoration: none;
   background: transparent;
@@ -21,8 +20,9 @@
   user-select: none;
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.1),
               0 0 0 calc(5 * #{$base-unit}) rgba(0, 0, 0, 0) inset;
-  transition-property: background-color, box-shadow;
-  transition-duration: 0.2s;
+  transition-property: background-color, box-shadow, color;
+  transition-duration: 0.2s, 0.2s, 0.3s;
+  transition-delay: 0s, 0s, 0.1s;
   transition-timing-function: $swift-out;
 
   &:hover {
