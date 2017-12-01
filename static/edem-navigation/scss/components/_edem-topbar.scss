@@ -146,7 +146,7 @@
           &.-active {
             color: $edem-color-primary;
             &::after { transform: scaleY(1) }
-            &:hover::after { transform: scaleY(0.85) }
+            &:hover::after { transform: scaleY(0.9375) } //(topbar-height - 2)/topbar-height
           }
 
           > .user-avatar {
