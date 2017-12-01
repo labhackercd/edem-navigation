@@ -148,6 +148,10 @@
             &::after { transform: scaleY(1) }
             &:hover::after { transform: scaleY(0.85) }
           }
+
+          > .user-avatar {
+            margin-left: 0.5 * $base-unit;
+          }
         }
       }
     }
