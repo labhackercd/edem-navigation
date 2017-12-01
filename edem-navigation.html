@@ -23,7 +23,7 @@
       <div class="menu JS-topbarMenuHandler">
         {# <a class="link">Fale conosco</a> #}
         {% if user.is_authenticated %}
-          <a class="link JS-openSidebar" data-sidebar-content="profile">Menu</a>
+          <a class="link JS-openSidebar" data-sidebar-content="profile">Menu<img class="user-avatar -small" {% if object.avatar %}style="background-image: url('{% use_macro avatar %}')"{% else %}src="{% static 'edem-navigation/img/user-icon.svg' %}"{% endif %} alt="{% use_macro username %}"></a>
         {% else %}
           <a class="link JS-openSidebar" data-sidebar-content="signin">Entrar</a>
           <a class="link -highlight JS-openSidebar" data-sidebar-content="signup">Cadastrar</a>
@@ -43,7 +43,7 @@
 
     {% if user.is_authenticated %}
       <div class="content JS-sidebarContent JS-profileContent">
-        <img class="avatar" alt="Imagem de perfil" style="background-image: url('{% use_macro avatar %}')">
+        <img class="user-avatar" {% if object.avatar %}style="background-image: url('{% use_macro avatar %}')"{% else %}src="{% static 'edem-navigation/img/user-icon.svg' %}"{% endif %} alt="Imagem de perfil">
         <span class="username">{% use_macro username %}</span>
         <a class="edem-button" href="{% use_macro profile_url %}">Editar Perfil</a>
         <a class="edem-button -negative" href="{% use_macro logout_url %}">Sair</a>
