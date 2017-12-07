@@ -3,7 +3,7 @@
   font-size: $base-unit;
   position: absolute;
   width: $edem-sidebar-width;
-  right: calc(#{$edem-sidebar-width} * -1);
+  left: 100%;
   top: $edem-topbar-height;
   box-sizing: border-box;
 
@@ -22,7 +22,7 @@
     padding: calc(2 * #{$base-unit}) $edem-sidebar-padding;
     background-color: $edem-color-primary;
     overflow: auto;
-    z-index: 100000;
+    z-index: 100001;
 
     .closewrapper {
       position: absolute;

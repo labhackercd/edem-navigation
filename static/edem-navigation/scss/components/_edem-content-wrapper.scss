@@ -26,14 +26,13 @@
 
   // Specific styles
   position: relative;
-  left: 0;
-  transition: left 0.3s $swift-out;
+  transition: margin-left 0.3s $swift-out;
 
   @at-root body.-sidebaropen {
     overflow: hidden;
   }
 
   @at-root body.-sidebaropen #{&} {
-    left: calc(#{$edem-sidebar-width} * -1); // Calc to give the variable in negative value
+    margin-left: $edem-sidebar-offset;
   }
 }
