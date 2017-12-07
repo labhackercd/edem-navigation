@@ -50,18 +50,8 @@
       display: flex;
     }
 
-    > .avatar{
-      align-self: center;
-      width: 4 * $base-unit;
-      height: 4 * $base-unit;
-      border-radius: 50%;
+    > .user-avatar {
       margin-bottom: 0.5 * $base-unit;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      text-indent: -100%;
-      white-space: nowrap;
-      overflow: hidden;
     }
 
     > .username {
