@@ -166,6 +166,9 @@ $('.JS-loginForm').submit(function(event) {
         location.reload();
       },
       error: function(jqXRH){
+        loginForm.removeClass('JS-submitting');
+        submitButton.removeClass('-loading');
+
         if (jqXRH.status == 0) {
           showError("Verifique sua conexão com a internet.")
         } else if (jqXRH.status == 401) {
@@ -177,10 +180,6 @@ $('.JS-loginForm').submit(function(event) {
         } else {
           showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
         }
-      },
-      complete: function() {
-        loginForm.removeClass('JS-submitting');
-        submitButton.removeClass('-loading');
       }
     });
   }
@@ -212,6 +211,9 @@ $('.JS-signUpForm').submit(function(event) {
       },
 
       error: function(jqXRH) {
+        signUpForm.removeClass('JS-submitting');
+        submitButton.removeClass('-loading');
+
         grecaptcha.reset();
         $("#g-recaptcha-response").val("");
         if (jqXRH.status == 0) {
@@ -233,10 +235,6 @@ $('.JS-signUpForm').submit(function(event) {
         } else {
           showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
         }
-      },
-      complete: function() {
-        signUpForm.removeClass('JS-submitting');
-        submitButton.removeClass('-loading');
       }
     });
   }
