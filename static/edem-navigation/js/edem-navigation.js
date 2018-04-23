@@ -145,6 +145,26 @@ $('.JS-closeAccessError').click(function(){
   $('.JS-accessErrorBox').attr('hidden', '');
 });
 
+// Grabbing client info for contact form
+  var windowHeight = $(window).height();
+  var windowWidth = $(window).width();
+  var screenHeight = screen.height;
+  var screenWidth = screen.Width;
+
+  geolocator.config({
+      google: {
+          version: "3",
+          key: "AIzaSyCidvuua2xkgvko6uQDUMs4m1IPvB6YsKI"
+      }
+  });
+
+  geolocator.locateByIP({addressLookup: true}, function (err, location) {
+    console.log(err || location);
+  });
+
+  console.log(platform);
+
+
 // Ajax calls for login and signup
 $('.JS-loginForm').submit(function(event) {
   event.preventDefault();
