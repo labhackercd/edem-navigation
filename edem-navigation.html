@@ -44,28 +44,23 @@
     <div class="content JS-sidebarContent JS-contactContent">
       <h1 class="header">Fale conosco</h1>
 
-      {% if user.is_authenticated  %}
-        <p class="info">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, quae obcaecati assumenda eaque!
-        </p>
+      <p class="info">
+        Você tem alguma dúvida, uma sugestão de melhoria, um problema à reportar, ou algo além a nos dizer sobre o portal e-Democracia e suas ferramentas?
+        <br>
+        Fale conosco preenchendo o formulário abaixo:
+      </p>
 
-        <form class="access JS-contactForm">
+      <form class="access JS-contactForm">
+        {% if user.is_authenticated  %}
+
           <div class="form-field">
             <textarea class="input JS-formInput" id="id_password" name="password" type="password" required></textarea>
             <label class="label" for="id_password"><span class="labeltext">Sua mensagem</span></label>
             <p class="error JS-inputError" data-input-name="password" hidden></p>
           </div>
 
-          <button class="edem-button">Enviar</button>
-        </form>
+        {% else %}
 
-      {% else %}
-
-        <p class="info">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, quae obcaecati assumenda eaque!
-        </p>
-
-        <form class="access JS-contactForm">
           <div class="form-field">
             <input class="input JS-formInput" id="id_username" name="username" required>
             <label class="label" for="id_username"><span class="labeltext">Nome</span></label>
@@ -84,9 +79,10 @@
             <p class="error JS-inputError" data-input-name="password" hidden></p>
           </div>
 
-          <button class="edem-button">Enviar</button>
-        </form>
-      {% endif %}
+        {% endif %}
+
+        <button class="edem-button">Enviar</button>
+      </form>
 
     </div>
 
