@@ -2,7 +2,40 @@
   $color-bg: $edem-color-accent;
   $color-fg: #fff;
 
-  @extend %button;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5em;
+  min-width: 6em;
+  padding: 0 1em;
+  font: inherit;
+  font-size: $font-size-base;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1 * $base-unit;
+  appearance: none;
+  text-decoration: none;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.1), 0 0 0 calc(5 * #{$base-unit}) rgba(0, 0, 0, 0) inset;
+  z-index: 0;
+  transition-property: background-color, box-shadow, color;
+  transition-duration: 0.2s, 0.2s, 0.3s;
+  transition-delay: 0s, 0s, 0.1s;
+  transition-timing-function: $swift-out;
+
+  &:hover {
+    box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.2), inset 0 0 0 calc(5 * #{$base-unit}) rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 calc(5 * #{$base-unit}) rgba(0, 0, 0, 0.25) inset;
+    transition-duration: 0.02s;
+  }
+
   background-color: transparent;
   color: $color-fg;
   margin: 0 auto;
@@ -10,7 +43,7 @@
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -19,12 +52,63 @@
     width: 100%;
     background-color: $color-bg;
     z-index: -1;
-    transition: height 0.2s 0s $swift-out;
+    opacity: 1;
+    transition: height 0.2s 0s $swift-out, opacity 0.3s $swift-out;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 1.2em;
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(-100%);
+    transition: opacity 0.3s $swift-out, transform 0.3s 0.1s $swift-out;
+  }
+
+  &.-big {
+    font-size: $font-size-base;
   }
 
   &.-negative {
     &::before {
       background-color: $edem-color-negative;
+    }
+  }
+
+  &.-error {
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjguMDIiIHdpZHRoPSIyOC4wMiIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNy40MTMzNTkyIDcuNDEzMzU5MiI+IDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDIuMSAtMTQ1LjEpIj4gPHBhdGggZD0ibTEwOC44IDE1MS44LTUuOTE3LTUuOTE3bTAgNS45MTcgNS45MTctNS45MTciIHN0cm9rZT0iI2Y2NSIgc3Ryb2tlLXdpZHRoPSIyLjExNyIgZmlsbD0ibm9uZSIvPiA8L2c+PC9zdmc+");
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &::before {
+      opacity: 0.8;
+    }
+  }
+
+  &.-done {
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzAuODUiIHdpZHRoPSIzOC4zNyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAuMTUyMjE5IDguMTYxNzEyNyI+IDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDAuMSAtMTQ4LjIpIj4gPHBhdGggZD0ibTEwMC45IDE1Mi4xIDIuNzM5IDIuNzM5IDUuOTE3LTUuOTE3IiBzdHJva2U9IiMwYzc5NTEiIHN0cm9rZS13aWR0aD0iMi4xMTciIGZpbGw9Im5vbmUiLz4gPC9nPjwvc3ZnPg==");
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &::before {
+      opacity: 0.8;
     }
   }
 
@@ -37,8 +121,9 @@
       padding-right: 0.5 * $base-unit;
     }
 
+
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -48,34 +133,13 @@
       background-repeat: no-repeat;
       background-position: center center;
     }
-
-    &.-facebook {
-      background-color: $edem-color-facebook;
-      color: #fff;
-      &::before {
-        background-image: url('../img/social-icon-facebook.svg');
-        background-color: transparent;
-        z-index: 1;
-      }
-    }
-
-    &.-google {
-      background-color: $edem-color-google;
-      color: hsl(0, 0, 50%);
-      &::before {
-        background-image: url('../img/social-icon-google.svg');
-        background-color: transparent;
-        z-index: 1;
-      }
-    }
   }
 
   &.-loading {
     color: transparent;
     cursor: default;
     pointer-events: none;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0),
-                0 0 0 0 rgba(0, 0, 0, 0) inset;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0) inset;
     transition: color 0.3s 0s $swift-out;
 
     &::before {
@@ -84,13 +148,14 @@
       background-repeat: no-repeat;
       background-position: 50% 0%;
       background-size: 100% 100%;
-      background-image: linear-gradient($edem-color-blue, $edem-color-blue),
-                        linear-gradient($edem-color-red, $edem-color-red),
-                        linear-gradient($edem-color-green, $edem-color-green),
-                        linear-gradient($edem-color-yellow, $edem-color-yellow);
+      background-image: linear-gradient($edem-color-blue, $edem-color-blue), linear-gradient($edem-color-red, $edem-color-red), linear-gradient($edem-color-green, $edem-color-green), linear-gradient($edem-color-yellow, $edem-color-yellow);
       background-size: 0% 100%, 0% 100%, 0% 100%, 0% 100%;
       transition: height 0.2s 0.1s $swift-out, background-color 0s 0.8s;
       animation: loading 1.5s 0.3s linear infinite;
+    }
+
+    &::after {
+      opacity: 0;
     }
   }
 }
@@ -99,15 +164,19 @@
   0% {
     background-size: 0% 100%, 0% 100%, 0% 100%, 0% 100%;
   }
+
   25% {
     background-size: 0% 100%, 0% 100%, 0% 100%, 110% 100%;
   }
+
   50% {
     background-size: 0% 100%, 0% 100%, 110% 100%, 100% 100%;
   }
+
   75% {
     background-size: 0% 100%, 110% 100%, 100% 100%, 100% 100%;
   }
+
   100% {
     background-size: 110% 100%, 100% 100%, 100% 100%, 100% 100%;
   }
