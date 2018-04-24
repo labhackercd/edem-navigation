@@ -73,7 +73,7 @@
       border-bottom: 4px solid $edem-color-accent;
     }
 
-    > .info {
+    > p {
       color: white;
       font-size: 0.75em;
       line-height: 1.5em;
@@ -82,14 +82,14 @@
       text-align: center;
     }
 
-    > .info > .link {
+    > p > .link {
       color: $edem-color-link;
       font-weight: 600;
       text-decoration: none;
     }
 
     > .success {
-      @extend .info;
+      @extend p;
       font-size: $font-size-deca;
     }
 
@@ -102,6 +102,15 @@
     > .access {
       display: flex;
       flex-direction: column;
+
+      > p {
+        color: white;
+        font-size: 0.75em;
+        line-height: 1.5em;
+        font-weight: 400;
+        margin-bottom: 2 * $base-unit;
+        text-align: center;;
+      }
 
       > .g-recaptcha {
         margin-top: 1 * $base-unit;
