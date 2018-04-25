@@ -50,40 +50,40 @@
         Fale conosco preenchendo o formulário abaixo:
       </p>
 
-      <form class="access JS-contactForm">
+      <form class="access JS-contactForm" method="POST" action="https://dev.edemocracia.labhackercd.leg.br/contact-us">
         {% if user.is_authenticated  %}
 
           <div class="form-field">
-            <textarea class="input JS-formInput" id="id_password" name="password" type="password" required></textarea>
-            <label class="label" for="id_password"><span class="labeltext">Sua mensagem</span></label>
-            <p class="error JS-inputError" data-input-name="password" hidden></p>
+            <textarea class="input JS-formInput" id="input-message" name="message" required></textarea>
+            <label class="label" for="input-message"><span class="labeltext">Sua mensagem *</span></label>
+            <p class="error JS-inputError" data-input-name="message" hidden></p>
           </div>
 
         {% else %}
 
           <div class="form-field">
-            <input class="input JS-formInput" id="id_username" name="username" required>
-            <label class="label" for="id_username"><span class="labeltext">Nome</span></label>
-            <p class="error JS-inputError" data-input-name="username" hidden></p>
+            <input class="input JS-formInput" id="input-name" name="name">
+            <label class="label" for="input-name"><span class="labeltext">Nome</span></label>
+            <p class="error JS-inputError" data-input-name="name" hidden></p>
           </div>
 
           <div class="form-field">
-            <input class="input JS-formInput" id="id_password" name="password" type="email" required>
-            <label class="label" for="id_password"><span class="labeltext">Email</span></label>
-            <p class="error JS-inputError" data-input-name="password" hidden></p>
+            <input class="input JS-formInput" id="input-email" name="email" type="email" required>
+            <label class="label" for="input-email"><span class="labeltext">Email *</span></label>
+            <p class="error JS-inputError" data-input-name="email" hidden></p>
           </div>
 
           <div class="form-field">
-            <textarea class="input JS-formInput" id="id_password" name="password" type="password" required></textarea>
-            <label class="label" for="id_password"><span class="labeltext">Sua mensagem</span></label>
-            <p class="error JS-inputError" data-input-name="password" hidden></p>
+            <textarea class="input JS-formInput" id="input-message" name="message" required></textarea>
+            <label class="label" for="input-message"><span class="labeltext">Sua mensagem *</span></label>
+            <p class="error JS-inputError" data-input-name="message" hidden></p>
           </div>
 
         {% endif %}
 
-        <button class="edem-button">Enviar</button>
+        <button class="edem-button JS-contactSubmit">Enviar</button>
 
-        <p class="info JS-contactError">Errooooou</p>
+        <p class="error JS-contactMessage"></p>
       </form>
 
     </div>

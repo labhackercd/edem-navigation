@@ -112,6 +112,20 @@
         text-align: center;;
       }
 
+      > .error {
+        visibility: hidden;
+        opacity: 0;
+        font-weight: 700;
+        transform: translateY(-50%);
+        transition: all 0.3s $swift-out;
+
+        &.-show {
+          visibility: visible;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       > .g-recaptcha {
         margin-top: 1 * $base-unit;
       }

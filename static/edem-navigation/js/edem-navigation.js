@@ -43,6 +43,15 @@ function showError(errorMessage) {
   $('.JS-accessError').text(errorMessage);
 }
 
+function showContactMessage(message) {
+  $('.JS-contactMessage').addClass('-show');
+  $('.JS-contactMessage').text(message);
+}
+
+function hideContactMessage() {
+  $('.JS-contactMessage').removeClass('-show');
+}
+
 function showSuccessSignupMessage() {
 // Replace signup content html with our success message.
   var userEmail = $('#mail').val();
@@ -145,26 +154,6 @@ $('.JS-closeAccessError').click(function(){
   $('.JS-accessErrorBox').attr('hidden', '');
 });
 
-// Grabbing client info for contact form
-  var windowHeight = $(window).height();
-  var windowWidth = $(window).width();
-  var screenHeight = screen.height;
-  var screenWidth = screen.Width;
-
-  geolocator.config({
-      google: {
-          version: "3",
-          key: "AIzaSyCidvuua2xkgvko6uQDUMs4m1IPvB6YsKI"
-      }
-  });
-
-  geolocator.locateByIP({addressLookup: true}, function (err, location) {
-    console.log(err || location);
-  });
-
-  console.log(platform);
-
-
 // Ajax calls for login and signup
 $('.JS-loginForm').submit(function(event) {
   event.preventDefault();
@@ -256,6 +245,129 @@ $('.JS-signUpForm').submit(function(event) {
           showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
         }
       }
+    });
+  }
+});
+
+// Send form
+$('.JS-contactForm').submit(function(event) {
+  event.preventDefault();
+  var contactForm = $(this);
+  var submitButton = $('.JS-contactSubmit');
+
+  if (contactForm.hasClass('JS-submitting')) {
+
+    return false;
+
+  } else {
+
+    contactForm.addClass('JS-submitting');
+    submitButton.addClass('-loading');
+    hideContactMessage();
+
+    // Grabbing client info for contact form
+    geolocator.config({
+      google: {
+        version: "3",
+        key: "AIzaSyCidvuua2xkgvko6uQDUMs4m1IPvB6YsKI"
+      }
+    });
+
+    var windowHeight = $(window).height();
+    var windowWidth = $(window).width();
+    var screenHeight = screen.height;
+    var screenWidth = screen.width;
+
+    var currentUrl = window.location.href;
+
+    var platformInfo = platform;
+
+    var geolocation = undefined;
+
+    var clientData = {
+      document: {
+        windowHeight: windowHeight,
+        windowWidth: windowWidth,
+        screenHeight: screenHeight,
+        screenWidth: screenWidth,
+        currentUrl: currentUrl
+      },
+      platform: {
+        browserDesc: platformInfo.description,
+        browserName: platformInfo.name,
+        browserVersion: platformInfo.version,
+        osFamily: platformInfo.os.family,
+        osVersion: platformInfo.os.version,
+        product: platformInfo.product,
+        userAgent: platformInfo.ua
+      }
+    }
+
+    geolocator.locateByIP({addressLookup: true}, function (err, location) {
+      if (err) {
+        geolocation = err;
+
+        clientData['ip'] = geolocation;
+
+        clientData['geolocation'] = geolocation;
+
+      } else {
+        geolocation = location;
+
+        clientData['ip'] = geolocation.ip
+
+        clientData['geolocation'] = {
+          city: geolocation.address.city,
+          country: geolocation.address.country,
+          state: geolocation.address.state,
+          route: geolocation.address.route,
+          street: geolocation.address.street,
+          streetNumber: geolocation.address.streetNumber,
+          formatedAddress: geolocation.formattedAddress,
+          latitude: geolocation.coords.latitude,
+          longitude: geolocation.coords.longitude
+        }
+      }
+
+      var data = {
+        form: contactForm.serialize(),
+        clientData: clientData
+      }
+
+      $.ajax({
+        type: contactForm.attr('method'),
+        url: contactForm.attr('action'),
+        data: data,
+
+        beforeSend: function() {
+          console.log(data);
+        },
+        success: function(response){
+          submitButton.removeClass('-loading').addClass('-done');
+            showContactMessage("Obrigado por entrar em contato. Retornaremos assim que possível! 😉");
+        },
+
+        error: function(jqXRH) {
+          contactForm.removeClass('JS-submitting');
+          submitButton.removeClass('-loading').addClass('-error');
+          setTimeout(function(){ submitButton.removeClass('-error') }, 3000);
+
+          if (jqXRH.status == 0) {
+            showContactMessage('Verifique sua conexão com a internet.');
+
+          } else if (jqXRH.status == 400) {
+          $.each(jqXRH.responseJSON["data"], function(key, value) {
+            showContactMessage(value);
+          });
+
+          } else if (jqXRH.status == 401) {
+            showContactMessage(jqXRH.responseJSON["data"])
+
+          } else {
+            showContactMessage("Ocorreu um erro no servidor.");
+          }
+        }
+      });
     });
   }
 });
