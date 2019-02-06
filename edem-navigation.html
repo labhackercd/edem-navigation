@@ -11,6 +11,7 @@
 {% macro username %}{% block edem_username %}{% endblock %}{% endmacro %}
 {% macro owner_name %}{% block edem_owner_name %}{% endblock %}{% endmacro %}
 {% macro recaptcha %}{% block edem_recaptcha %}{% endblock %}{% endmacro %}
+{% macro camara_login %}{% block edem_camara_login %}{% endblock %}{% endmacro %}
 
 <div class="edem-topbar">
   <div class="stick">
@@ -25,8 +26,12 @@
         {% if user.is_authenticated %}
           <a class="link JS-openSidebar" data-sidebar-content="profile">Menu<img class="user-avatar -small" {% use_macro avatar %} alt="{% use_macro username %}"></a>
         {% else %}
+          {% if CAMARA_LOGIN %}
+          <a class="link" href="{% use_macro camara_login %}">Entrar / Cadastrar</a>
+          {% else %}
           <a class="link JS-openSidebar" data-sidebar-content="signin">Entrar</a>
           <a class="link -highlight JS-openSidebar" data-sidebar-content="signup">Cadastrar</a>
+          {% endif %}
         {% endif %}
       </div>
       <button class="hamburger-button JS-toggleTopbarMenu JS-closeSidebar"></button>
@@ -50,7 +55,7 @@
       </div>
 
     {% else %}
-
+      {% if not CAMARA_LOGIN %}
       <div class="content JS-sidebarContent JS-signinContent">
         <h1 class="header">Entrar</h1>
 
@@ -374,6 +379,7 @@
           </div>
         </form>
       </div>
+      {% endif %}
     {% endif %}
 
   </div>
