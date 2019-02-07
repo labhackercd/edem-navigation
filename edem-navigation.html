@@ -50,7 +50,9 @@
       <div class="content JS-sidebarContent JS-profileContent">
         <img class="user-avatar" {% use_macro avatar %} alt="{% use_macro username %}">
         <span class="username">{% use_macro username %}</span>
+        {% if not CAMARA_LOGIN %}
         <a class="edem-button" href="{% use_macro profile_url %}">Editar Perfil</a>
+        {% endif %}
         <a class="edem-button -negative" href="{% use_macro logout_url %}">Sair</a>
       </div>
 
