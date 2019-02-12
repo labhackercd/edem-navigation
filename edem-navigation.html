@@ -24,7 +24,7 @@
       <div class="menu JS-topbarMenuHandler">
         {# <a class="link">Fale conosco</a> #}
         {% if user.is_authenticated %}
-          <a class="link JS-openSidebar" data-sidebar-content="profile">Menu<img class="user-avatar -small" {% use_macro avatar %} alt="{% use_macro username %}"></a>
+          <a class="link JS-openSidebar" data-sidebar-content="profile">Menu<span class="user-avatar -small" {% use_macro avatar %} alt="{% use_macro username %}"></span></a>
         {% else %}
           {% if CAMARA_LOGIN %}
           <a class="link" href="{% use_macro camara_login %}">Entrar / Cadastrar</a>
