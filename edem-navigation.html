@@ -48,7 +48,7 @@
 
     {% if user.is_authenticated %}
       <div class="content JS-sidebarContent JS-profileContent">
-        <img class="user-avatar" {% use_macro avatar %} alt="{% use_macro username %}">
+        <span class="user-avatar" {% use_macro avatar %} alt="{% use_macro username %}"></span>
         <span class="username">{% use_macro username %}</span>
         {% if not CAMARA_LOGIN %}
         <a class="edem-button" href="{% use_macro profile_url %}">Editar Perfil</a>
