@@ -4,6 +4,9 @@
   min-height: $edem-topbar-height;
   width: 100%;
   box-sizing: border-box;
+  @media print{
+    display: block;
+  }
 
   * { box-sizing: inherit }
 
@@ -21,6 +24,9 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
     overflow: hidden;
     z-index: 1000000;
+    @media print{
+      position: initial, 
+    }
 
     > .brand {
       display: inline-flex;
@@ -49,6 +55,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
         @include bp-smallup {
           line-height: 1 * $base-unit;
           font-size: 1 * $base-unit;
