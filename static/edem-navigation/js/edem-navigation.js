@@ -150,7 +150,7 @@ $('.JS-loginForm').submit(function(event) {
   } else {
     $.ajax({
       type:"POST",
-      url: '/ajax/login/',
+      url: '/accounts/ajax/login/',
       data: $(event.target).serialize(),
       beforeSend: function() {
         loginForm.addClass('JS-submitting');
@@ -194,7 +194,7 @@ $('.JS-signUpForm').submit(function(event) {
   } else {
     $.ajax({
       type:"POST",
-      url: '/ajax/signup/',
+      url: '/accounts/ajax/signup/',
       data: $(event.target).serialize(),
       beforeSend: function() {
         signUpForm.addClass('JS-submitting');
